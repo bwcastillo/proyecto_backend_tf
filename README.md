@@ -2,14 +2,16 @@
 
 Este es un repositorio que contiene el proyecto del curso Backend en Python de Talento Futuro, Corfo. 
 
-### Semana 1:
+### Semana 1 (30 de enero al 06 de febrero):
 **Tareas del equipo**:
--Avance HU (en Taiga y otra herramienta similar) (BRYAN) (HOY - MAÑANA - SÁBADO 01 DE FEBRERO)
--Avance de modelo de datos (SCARLETT) 31ENER-01FEB 
--Avance de código (Django o FastAPI) (ULISES (DOMINGO) - MANUEL) - CAROL (TESTERLUNES O MARTES) + BRYAN)
--Documentación de APIs (Swagger) (ULISES(DOMINGO) - MANUEL(DOMINGO))
--Demo funcional en video (link a YouTube, oculto) (ULISES-BRYAN)
+|Tarea|Responsable(s)|Fecha entrega|
+|-----|--------|-------------|
+|Avance HU (en Taiga y otra herramienta similar) | Bryan |01FEB|
+|Avance de modelo de datos | Scarlett| 31ENER - 01FEB| 
+|Avance de código (Django o FastAPI)| Manuel (Parte 1) - Ulises (Parte 2) - Carol (Tester)| 31ENE - 02FEB - 03FEB|
+|Documentación de APIs (Swagger)| Manuel - Ulises | 02FEB |
+|Demo funcional en video (link a YouTube, oculto)| Ulises - Bryan| 03FEB-04FEB-05FEB|
 
-LUNES AMISTOSOS RECORDATORIOS
-MARTES REVISIÓN - ENTREGABLES 
-MIÉRCOLES - ULISES-BRYAN PAQUETE Y VIDEO -> COORDINA LA ENTREGA EL COMO
+- LUNES 03 FEBRERO: AMISTOSOS RECORDATORIOS
+- MARTES 04 FEBRERO: REVISIÓN - ENTREGABLES 
+- MIÉRCOLES 05 FEBRERO: EMPAQUETAMIENTO - VIDEO - COORDINA LA ENTREGA EL COMO
