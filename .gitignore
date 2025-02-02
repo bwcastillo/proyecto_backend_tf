@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+*.pyo
+*.sqlite3
+.env
+venv/
+db.sqlite3
+*.log
+*.pot
+*.pyc
+.tox/
+.coverage
+.mypy_cache/
+.nox/
+.hypothesis/
+.pytest_cache/
+.coverage/
