@@ -37,15 +37,13 @@ class CrearOrganismo(generics.CreateAPIView):
 
 
 # Mostrar Medidas
-# Muestra segun busqueda por el id del organismo, por ahora...
-# TODO: cambiar busqueda por ir a nombre del organismo
-# TODO: Mostrar el nombre del organismo en lugar del id
 class MostrarMedidas(generics.ListAPIView):
-    # queryset = Medida.objects.all()
     serializer_class = MedidaSerializer
 
     def get_queryset(self):
         query = self.kwargs.get('query', '')
-        if query:
-            return Medida.objects.filter(id_organismo__icontains=query)
-        return Medida.objects.all()
+        organismos = Organismo.objects.all().values("id_organismo", "nombre")
+        #match query name with id_organismo
+        organismo_id = organismos.filter(nombre__icontains=query)
+        if organismo_id:
+            return Medida.objects.filter(id_organismo__icontains=organismo_id[0]['id_organismo'])
