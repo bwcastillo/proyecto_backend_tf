@@ -17,11 +17,11 @@ class Medida(models.Model):
     id_organismo = models.IntegerField()
     referencia_pda = models.CharField(max_length=255, blank=True, null=True)
     tipo_medida = models.CharField(max_length=255, blank=True, null=True)
-    nombre_corto = models.CharField(max_length=255, blank=True, null=True)
-    indicador = models.CharField(max_length=255, blank=True, null=True)
-    formula = models.CharField(max_length=255, blank=True, null=True)
+    nombre_corto = models.CharField(max_length=None, blank=True, null=True)
+    indicador = models.CharField(max_length=None, blank=True, null=True)
+    formula = models.CharField(max_length=None, blank=True, null=True)
     frecuencia = models.CharField(max_length=255, blank=True, null=True)
-    verificacion = models.CharField(max_length=255, blank=True, null=True)
+    verificacion = models.CharField(max_length=None, blank=True, null=True)
     regulatoria = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:

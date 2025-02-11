@@ -25,9 +25,11 @@ class BuscarOrganismos(generics.ListAPIView):
 
     def get_queryset(self):
         query = self.kwargs.get('query', '')
-        if query:
-            return Organismo.objects.filter(nombre__icontains=query)
-        return Organismo.objects.all()
+        organismos = Organismo.objects.all().values("id_organismo", "nombre")
+        #match query name with id_organismo
+        organismo_id = organismos.filter(nombre__icontains=query)
+        if organismo_id:
+            return Organismo.objects.filter(id_organismo__icontains=organismo_id[0]['id_organismo'])
 
 
 # Crear Organismos
