@@ -15,3 +15,6 @@ db.sqlite3
 .hypothesis/
 .pytest_cache/
 .coverage/
+proyecto_django/conexiones/migrations/0003_remove_medida_descripcion_remove_medida_plazo_and_more.py
+respaldo_db/medidas_202501312240.sql
+respaldo_db/organismos_202501312239.sql

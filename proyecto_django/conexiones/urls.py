@@ -11,5 +11,4 @@ urlpatterns = [
     path('crear_organismo/', CrearOrganismo.as_view(), name='crear_organismo'),
     path('mostrar_medidas/<str:query>/',
          MostrarMedidas.as_view(), name='mostrar_medidas'),
-
 ]

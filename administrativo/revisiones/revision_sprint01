@@ -1,0 +1,48 @@
+Revisión del back log 1:
+
+### **I. Cosas por mejorar**:
+
+1) En el endpoint `api/crear_organismos/`
+- Agregar la opción de elegir los organismos desde una lista para no tener problemas al momento de consultar a la base de datos.
+- Agregar la opción de elegir región desde una lista para no tener problemas al momento de consultar a la base de datos. 
+- Cuando se mande el POST que se borre el formulario se borre y diga que se ingresó
+
+### **II. Cosas por agregar**
+
+1) Falta un endpoint que permita agregar las medidas por organismo, recuerden que debemos hacer un consolidado por PPDA a cada organismo sectorial, en este consolidado debe aparecer:
+
+|Oganismo |Referencia PPDA| Tipo de Medida| Nombre Corto| Indicador| Fórmula de cálculo| Frecuencia con la que nos tienen qe devolver el reporte| Medios de Verificación| Si es regulatorio o no | 
+|--|--|--|--|--|--|--|--|--|
+
+Potencialmente este consolidado será enviado al organismo sectorial. Recordar la lógica del negocio y que este es el Backlog 1 (BL1):
+
+```mermaid
+sequenceDiagram
+    participant PPDA
+    participant Fiscalizador
+    participant Organismo responsable
+    PPDA->> Fiscalizador: BL0: Recibe PPDA con indicaciones
+    Fiscalizador->>Organismo responsable: BL1: Manda indicadores 
+    Organismo responsable->>Fiscalizador: BL2: Cumple con los índices y manda reporte
+    Fiscalizador->>Organismo responsable: BL 0.1: Verifica cumplimiento y notifica cumplimiento
+```
+
+### **III. Cosas por arreglar**
+1)  En el end-point `api/mostrar_medidas` cuando pongo query parameter "1" (`api/mostrar_medidas/1/`) me muestra una lista de todas las medidas y es poco claro que me está devolviendo, aparentemente me devuelve todo. También ocurren los siguientes casos:
+
+`api/mostrar_medidas/N/`:  $N>1$ Retorna una respuesta vacía.
+`api/mostrar_medidas?id_medida=51/`: Retorna error 
+`/api/mostrar_medidas?id_organismo=15/`: Retorna error
+
+2) El endpoint de `api/buscar_organismos` también trae, en parte, el mismo problema. Al consultar los siguientes end-points me retorna todas las respuestas.
+
+`/api/buscar_organismos/?id_organismo=1`: No trabaja bien, los devuelve todos
+`/api/buscar_organismos/?nombre=CONAF/`: No trabaja bien, los devuelve todos
+`/api/buscar_organismos?nombre=CONAF/`: Se redirige a la url `/api/buscar_organismos/?nombre=CONAF/` y por ende los  retorna todos.
+
+Al respecto se recomienda la proxima vez hacer `Pull Request` en vez de commit directo al `master` o `main` para evitar subir errores a la rama principal y trabajar en paralelo las cosas por arreglar reportada por los testers. 
+
+Dejo adjunto a @uwulises, @cleivan2023, @Geraldy0605  para que pueda ir chequeando y me corrijan este texto en caso de encontrar errores respecto a lo revisado. 
+
+Que tengan un buen finde. 
+Bryan
