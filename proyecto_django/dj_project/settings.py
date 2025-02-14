@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'conexiones.apps.ConexionesConfig',
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -130,3 +131,15 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+REST_FRAMEWORK = {
+'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+# Configuración del esquema de la API
+SPECTACULAR_SETTINGS = {
+'TITLE': 'API del sistema gestor PPDA',
+'DESCRIPTION': 'Una API para gestionar los PPDA - V.1.0.0 Puchquinco.',
+'VERSION': '1.0.0',
+}
