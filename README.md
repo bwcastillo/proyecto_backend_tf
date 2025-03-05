@@ -11,12 +11,12 @@ Este es un repositorio que contiene el proyecto del curso Backend en Python de T
 |Avance de código Core 1(Django| Manuel | 31ENE - 02FEB - 03FEB| <ul><li> [X] Finalizado</li><ul>|
 |Avance de código Core 2(Django)| Ulises | 31ENE - 02FEB - 03FEB| <ul><li> [ ] Finalizado</li><ul>|
 |Testing Carol - Bryan | Carol (Tester)| 31ENE - 02FEB - 03FEB| <ul><li> [X] Finalizado</li><ul>|
-|Documentación de APIs (Swagger)| Manuel - Ulises | 02FEB | <ul><li> [ ] Finalizado</li><ul> |
-|Demo funcional en video (link a YouTube, oculto)| Ulises - Bryan| 03FEB-04FEB-05FEB|<ul><li> [ ] Finalizado</li><ul>|
+|Documentación de APIs (Swagger)| Manuel - Ulises | 02FEB | <ul><li> [X] Finalizado</li><ul> |
+|Demo funcional en video (link a YouTube, oculto)| Ulises - Bryan| 03FEB-04FEB-05FEB|<ul><li> [X] Finalizado</li><ul>|
 
 - [X] LUNES 03 FEBRERO: AMISTOSOS RECORDATORIOS 
-- [ ] LUNES 10 FEBRERO: REVISIÓN - ENTREGABLES 
-- [ ] LUNES 10 FEBRERO: EMPAQUETAMIENTO - VIDEO - COORDINA LA ENTREGA EL COMO 
+- [X] LUNES 10 FEBRERO: REVISIÓN - ENTREGABLES 
+- [X] LUNES 10 FEBRERO: EMPAQUETAMIENTO - VIDEO - COORDINA LA ENTREGA EL COMO 
 
 La revisión y reporte de este Sprint estarán disponibles en el siguiente [link](/administrativo/revisiones)
 
