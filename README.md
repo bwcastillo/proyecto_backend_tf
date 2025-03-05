@@ -9,7 +9,7 @@ Este es un repositorio que contiene el proyecto del curso Backend en Python de T
 |Avance HU (en Taiga y otra herramienta similar) | Bryan |01FEB|<ul><li> [X] Finalizado</li><ul> |
 |Avance de normalizacion de datos | Scarlett| 31ENER - 01FEB| <ul><li> [X] Finalizado</li><ul> |
 |Avance de código Core 1(Django| Manuel | 31ENE - 02FEB - 03FEB| <ul><li> [X] Finalizado</li><ul>|
-|Avance de código Core 2(Django)| Ulises | 31ENE - 02FEB - 03FEB| <ul><li> [ ] Finalizado</li><ul>|
+|Avance de código Core 2(Django)| Ulises | 31ENE - 02FEB - 03FEB| <ul><li> [X] Finalizado</li><ul>|
 |Testing Carol - Bryan | Carol (Tester)| 31ENE - 02FEB - 03FEB| <ul><li> [X] Finalizado</li><ul>|
 |Documentación de APIs (Swagger)| Manuel - Ulises | 02FEB | <ul><li> [X] Finalizado</li><ul> |
 |Demo funcional en video (link a YouTube, oculto)| Ulises - Bryan| 03FEB-04FEB-05FEB|<ul><li> [X] Finalizado</li><ul>|
