@@ -65,3 +65,8 @@ Y CON UN DEAD LINE (FRECUENCIA DEL REPORTE)
 -	FISCALIZADOR APRUEBA DA PRORROGA (PREGUNTAR A STANLEY)
 -	FISCALIZADOR DA CUENTA NO CUMPLE
     - SI NO CUMPLE MANDA RECORDATORIO O MULTA (REVISAR)
+
+## Historia
+1) Yo como fiscalizador tengo que mandar los indicadores por cumplir a los organismos sectoriales. (PREGUNTAR) Sin embargo, en la práctica el fiscalizador debería activar un método para que el organismo sectorial permita postear en la tabla los campos que se llenan. 
+Nico creará un front dónde se usa este método para que el usuario pueda rellenar el formulario
+2) Yo como organismo sectorial ya notificado o sabiendo que tengo que rellenar (POST) la tabla del formulario. 
