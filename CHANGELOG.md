@@ -9,6 +9,8 @@ Todas las modificaciones importantes a este proyecto serán documentadas en este
 - Se agregan instrucciones de instalación en  `README.md` .
 - Se agregan decoradores Swagger para la documentación de la API en `views.py`.
 - Se añade CORS para permitir el acceso a la API desde otros dominios.
+- Se añade autentificacion tipo Basic Auth para la API.
+  - Se agrega en `admin.py` clases para manipular los permisos de los usuarios en el admin de Django, vinculando los permisos de los usuarios a los grupos de Django.
 
 ### Cambiado
 - Se actualizan descripciones de los modelos en `models.py`.
