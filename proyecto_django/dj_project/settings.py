@@ -27,6 +27,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+CORS_ALLOW_ALL_ORIGINS = False 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+]
 
 # Application definition
 
@@ -40,9 +45,11 @@ INSTALLED_APPS = [
     'rest_framework',
     'conexiones.apps.ConexionesConfig',
     'drf_spectacular',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -76,19 +83,34 @@ WSGI_APPLICATION = 'dj_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'proyecto',
+#         'USER': 'postgres',   ## Cambia esto por tu usuario de PostgreSQL
+#         'PASSWORD': 'admin123', ## Cambia esto por tu contraseña de PostgreSQL
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#         'OPTIONS': {
+#             'options': '-c search_path=public',
+#         },
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'proyecto',
-        'USER': 'postgres',
-        'PASSWORD': 'admin123',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'curso',
+        'USER': 'ingadm',
+        'PASSWORD': '@Ifsnok10in23668l',
+        'HOST': 'cl01sv36a',
+        'PORT': '3306',
         'OPTIONS': {
-            'options': '-c search_path=public',
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
         },
     }
 }
+
 
 
 # Password validation
@@ -134,7 +156,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 REST_FRAMEWORK = {
-'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 # Configuración del esquema de la API
@@ -142,4 +170,6 @@ SPECTACULAR_SETTINGS = {
 'TITLE': 'API del sistema gestor PPDA',
 'DESCRIPTION': 'Una API para gestionar los PPDA - V.1.0.0 Puchquinco.',
 'VERSION': '1.0.0',
+# 'SERVE_INCLUDE_SCHEMA': False,
+# 'COMPONENT_SPLIT_REQUEST': True,
 }
