@@ -70,3 +70,57 @@ Y CON UN DEAD LINE (FRECUENCIA DEL REPORTE)
 1) Yo como fiscalizador tengo que mandar los indicadores por cumplir a los organismos sectoriales. (PREGUNTAR) Sin embargo, en la práctica el fiscalizador debería activar un método para que el organismo sectorial permita postear en la tabla los campos que se llenan. 
 Nico creará un front dónde se usa este método para que el usuario pueda rellenar el formulario
 2) Yo como organismo sectorial ya notificado o sabiendo que tengo que rellenar (POST) la tabla del formulario. 
+
+
+--
+
+## **IV. Instalación y uso**
+
+Para instalar el proyecto, sigue estos pasos:
+
+### 1. Clonar el repositorio
+
+```bash
+git clone hhttps://github.com/bwcastillo/proyecto_backend_tf
+cd proyecto_backend_tf/proyecto_django/
+```
+
+### 2. Crear un entorno virtual
+
+```bash
+python -m venv venv
+source venv/bin/activate  # En Linux/Mac
+# o
+venv\Scripts\activate  # En Windows
+```
+
+### 3. Instalar dependencias
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Configurar la base de datos
+- Asegúrate de tener PostgreSQL instalado y en funcionamiento.
+- Crea una base de datos para el proyecto.
+- Configura la conexión a la base de datos en el archivo `settings.py` de Django.
+
+### 5. Ejecutar migraciones
+
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
+### 6 De ser necesario, crear un superusuario para acceder al panel de administración de Django:
+
+```bash
+python manage.py createsuperuser
+```
+
+### 7. Ejecutar el servidor de desarrollo
+
+```bash
+python manage.py runserver
+```
+

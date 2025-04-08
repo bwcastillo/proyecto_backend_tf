@@ -3,10 +3,17 @@ from django.http import JsonResponse
 from .models import Organismo, Medida
 from .serializers import OrganismoSerializer, MedidaSerializer
 from rest_framework import generics
+from drf_spectacular.utils import extend_schema
+
 
 
 # Bienvenida
 # TODO: Cambiar a una vista de bienvenida mas elaborada con los miembros del equipo
+@extend_schema(
+    summary="Bienvenida",
+    description="Mensaje de prueba para comprobar que la API está activa.",
+    methods=["GET"]
+)
 def bienvenida(request):
     '''
     Una amistosa bienvenida.
@@ -15,6 +22,12 @@ def bienvenida(request):
 
 
 # Listar Organismos
+@extend_schema(
+    summary="Listar organismos",
+    description="Devuelve una lista con todos los organismos registrados en el sistema.",
+    methods=["GET"],
+    responses=OrganismoSerializer(many=True)
+)
 def listar_organismos(request):
     '''
     API que devuelve una lista de los organismos:
@@ -22,14 +35,17 @@ def listar_organismos(request):
     Métodos:
     - 'GET /listar_organismos/': Lista todos los organismos involucrados en el PPDA
     '''
-
-    organismos = Organismo.objects.all().values(
-        "id_organismo", "nombre", "region")
+    organismos = Organismo.objects.all().values("id_organismo", "nombre", "region")
     return JsonResponse(list(organismos), safe=False)
 
 
 # Buscar Organismos
 # Busca con el formato /buscar_organismos/nombre_a_buscar/
+@extend_schema(
+    summary="Buscar organismos por nombre",
+    description="Busca organismos cuyo nombre coincida parcialmente con el parámetro de búsqueda.",
+    responses=OrganismoSerializer(many=True)
+)
 class BuscarOrganismos(generics.ListAPIView):
     '''
     API que devuelve una lista de los organismos:
@@ -37,45 +53,46 @@ class BuscarOrganismos(generics.ListAPIView):
     Métodos:
     - 'GET /BuscarOrganismos/{nombre del  organismo}': Devuelve el organismo, su id y región asociada.
     '''
-
-
     serializer_class = OrganismoSerializer
 
-    def get_queryset(self): #Bryan: CONSIDERAR QUE DEVUELVA MÁS TABLAS ASOCIADAS AL ORGANISMO
+    def get_queryset(self):
         query = self.kwargs.get('query', '')
-        organismos = Organismo.objects.all().values("id_organismo", "nombre")
-        #match query name with id_organismo
-        organismo_id = organismos.filter(nombre__icontains=query)
-        if organismo_id:
-            return Organismo.objects.filter(id_organismo__icontains=organismo_id[0]['id_organismo'])
+        return Organismo.objects.filter(nombre__icontains=query)
 
 
 # Crear Organismos
+@extend_schema(
+    summary="Crear un nuevo organismo",
+    description="Permite registrar un nuevo organismo proporcionando su nombre y región.",
+    request=OrganismoSerializer,
+    responses=OrganismoSerializer
+)
 class CrearOrganismo(generics.CreateAPIView):
     '''
-    API que devuelve una lista de los organismos:
+    devuelve una lista de los organismos:
 
     Métodos:
     - 'POST /CrearOrganismo/{Nombre del nuevo organismo}': Crea un nuevo organismo en la tabla de Organismos.
     '''
-
     queryset = Organismo.objects.all()
     serializer_class = OrganismoSerializer
 
 
 # Mostrar Medidas
+@extend_schema(
+    summary="Mostrar medidas por organismo",
+    description="Devuelve una lista de medidas asociadas al nombre del organismo proporcionado.",
+    responses=MedidaSerializer(many=True)
+)
 class MostrarMedidas(generics.ListAPIView):
-    serializer_class = MedidaSerializer
     '''
-    API que devuelve una lista de los organismos:
+    devuelve una lista de las medidas:
 
     Métodos:
-    - 'GET /MostrarMedidas/{id_medida}': Crea un nuevo organismo en la tabla de Organismos.
+    - 'GET /MostrarMedidas/{id_medida}': Muestra las medidas asociadas a un organismo.
     '''
+    serializer_class = MedidaSerializer
+
     def get_queryset(self):
         query = self.kwargs.get('query', '')
-        organismos = Organismo.objects.all().values("id_organismo", "nombre")
-        #match query name with id_organismo
-        organismo_id = organismos.filter(nombre__icontains=query)
-        if organismo_id:
-            return Medida.objects.filter(id_organismo__icontains=organismo_id[0]['id_organismo'])
+        return Medida.objects.filter(organismo__nombre__icontains=query)
