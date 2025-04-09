@@ -83,34 +83,19 @@ WSGI_APPLICATION = 'dj_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'proyecto',
-#         'USER': 'postgres',   ## Cambia esto por tu usuario de PostgreSQL
-#         'PASSWORD': 'admin123', ## Cambia esto por tu contraseña de PostgreSQL
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#         'OPTIONS': {
-#             'options': '-c search_path=public',
-#         },
-#     }
-# }
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'curso',
-        'USER': 'ingadm',
-        'PASSWORD': '@Ifsnok10in23668l',
-        'HOST': 'cl01sv36a',
-        'PORT': '3306',
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-        },
-    }
-}
-
+ DATABASES = {
+     'default': {
+         'ENGINE': 'django.db.backends.postgresql',
+         'NAME': 'proyecto',
+         'USER': 'postgres',   ## Cambia esto por tu usuario de PostgreSQL
+         'PASSWORD': 'admin123', ## Cambia esto por tu contraseña de PostgreSQL
+         'HOST': 'localhost',
+         'PORT': '5432',
+         'OPTIONS': {
+             'options': '-c search_path=public',
+         },
+     }
+ }
 
 
 # Password validation
