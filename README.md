@@ -19,7 +19,18 @@ Este es un repositorio que contiene el proyecto del curso Backend en Python de T
 - [X] LUNES 10 FEBRERO: EMPAQUETAMIENTO - VIDEO - COORDINA LA ENTREGA EL COMO 
 
 La revisión y reporte de este Sprint estarán disponibles en el siguiente [link](/administrativo/revisiones)
+## **CHANGELOG**
+Para ver los cambios y mejoras desde la versión 1 hasta ahora visita por favor el [CHANGELOG](https://github.com/bwcastillo/proyecto_backend_tf/blob/master/CHANGELOG.md)
+Considera que esta nueva versión utiliza Basicauth.
 
+## **I.ii Sprint 2 - Semana (Viernes 28 de marzo al 09 de febrero):**
+**Tareas del equipo**:
+|Tarea|Responsable(s)|Fecha entrega|Finalizado|
+|-----|--------|-------------|---|
+|Actualización documentación| Bryan |28 MAR al 09FEB|<ul><li> [X] Finalizado</li><ul> |
+|Testing de la aplicación |Scarlett-Geraldy-Nicolás |28 MAR al 09FEB| <ul><li> [X] Finalizado</li><ul> |
+|Desarrollo lógica negocio Organismos con responsabilidad sectorial| Manuel |28 MAR al 09FEB| <ul><li> [X] Finalizado</li><ul>|
+|Scrum master y enviar segunda entrega| Ulises |28 MAR al 09FEB| <ul><li> [X] Finalizado</li><ul>|
 
 ## **II. Lógica del negocio y Backlogs**
 
@@ -67,10 +78,13 @@ Y CON UN DEAD LINE (FRECUENCIA DEL REPORTE)
     - SI NO CUMPLE MANDA RECORDATORIO O MULTA (REVISAR)
 
 ## Historia
-1) Yo como fiscalizador tengo que mandar los indicadores por cumplir a los organismos sectoriales. (PREGUNTAR) Sin embargo, en la práctica el fiscalizador debería activar un método para que el organismo sectorial permita postear en la tabla los campos que se llenan. 
-Nico creará un front dónde se usa este método para que el usuario pueda rellenar el formulario
-2) Yo como organismo sectorial ya notificado o sabiendo que tengo que rellenar (POST) la tabla del formulario. 
-
+1) Yo como fiscalizador tengo que ingresar los organismos sectoriales y las medidas que deben cumplir.
+2) Idealmente, como fiscalizador debo notificar a los organismos sectoriales. 
+3) Como organismo sectorial debo entrar a una url y saber cuales son las medidas que debo cumplir, y cuales son prioritarias.
+4) Como organismo sectorial una vez cumpla las medidas debo enviárselas al fiscalizador.
+5) Como fiscalizador debo verificar que el organismo sectorial cumplió con las medidas.
+6) Como fiscalizador debo devolver las medidas que no están cumplidas.
+7) Como organismo sectorial debo pedir más plazo si no logro cumplir con las medidas. 
 
 --
 
@@ -122,5 +136,104 @@ python manage.py createsuperuser
 
 ```bash
 python manage.py runserver
+```
+
+### 8. Para ver documentación ingresar al link
+
+http://127.0.0.1:8000/api/docs/
+
+## **V. Modelo relacional de datos**
+
+```mermaid
+erDiagram
+    User ||--o{ UsuarioPerfil : has
+    Organismo ||--o{ UsuarioPerfil : pertenece_a
+    Organismo ||--o{ Medida : implementa
+    Organismo ||--o{ Reporte : entrega
+    Organismo ||--o{ AsignacionIndicador : asignado
+    Indicador ||--o{ AsignacionIndicador : asigna
+    Indicador ||--o{ Medida : mide
+    Medida ||--o{ Reporte : contiene
+    Medida ||--o{ Cumplimiento : evalua
+    PPDA ||--o{ PeriodoPPDA : tiene
+    PPDA ||--o{ Medida : vincula
+    PeriodoPPDA ||--o{ Medida : vincula
+    Reporte ||--o| Trazable : extension
+    Medida ||--o| Trazable : extension
+    Cumplimiento ||--o| Trazable : extension
+
+    UsuarioPerfil {
+        int id
+        string rol
+    }
+
+    User {
+        int id
+        string username
+    }
+
+    Organismo {
+        int id_organismo PK
+        string nombre
+        string region
+    }
+
+    PPDA {
+        int id PK
+        string nombre
+        text descripcion
+        date fecha_inicio
+        date fecha_fin
+    }
+
+    PeriodoPPDA {
+        int id PK
+        int anio
+        date inicio_periodo
+        date fin_periodo
+    }
+
+    Indicador {
+        int id_indicador PK
+        text descripcion
+        text formula_calculo
+        text medio_verificacion
+    }
+
+    Medida {
+        int id_medida PK
+        string referencia_pda
+        string tipo_medida
+        string nombre_corto
+        string frecuencia
+        string regulatoria
+    }
+
+    Reporte {
+        int id_reporte PK
+        date fecha
+        int ano_calendario
+        string estado
+    }
+
+    Cumplimiento {
+        int id_cumplimiento PK
+        decimal porcentaje_cumplimiento
+    }
+
+    AsignacionIndicador {
+        int id PK
+        date fecha_asignacion
+        text observaciones
+        boolean activo
+    }
+
+    Trazable {
+        datetime created_at
+        datetime updated_at
+        User creado_por
+        User modificado_por
+    }
+
 ```
 
