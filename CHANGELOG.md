@@ -4,17 +4,37 @@ Todas las modificaciones importantes a este proyecto serán documentadas en este
 
 ---
 
+## [Tercera Entrega] - 2025-05-24
+### Agregado
+- Se crea endpoint para la visualización de archivos `README.md` y `CHANGELOG.md` en la API.
+- Se crea template HTML (`bienvenida.html`) para vista de `BienvenidaRootView`.
+- Se crea registro de logs, para guardar información de las peticiones realizadas a la API.
+- Se crea un endpoint para la visualización de logs en la API.
+
+### Cambiado
+- Se modifica la vista `Bienvenida` para que devuelva un mensaje de bienvenida con los participantes del proyecto.
+- Se eliminan los campos `id_medida`, `id_indicador`, `id_organismo`, `id_reporte` y `id_cumplimiento` de los modelos, ya que Django crea automáticamente un campo `id` autoincremental para cada modelo.
+- Se cambia `serializers.py` para los nuevos modelos y se eliminan los campos innecesarios.
+
+### Corregido
+- Se añaden excepcionees para manejar errores en la API.
+  - Errores son guardados en el log de la API.
+- Se agregaron validaciones de lógica de negocio al `MedidaSerializer` para asegurar coherencia entre los campos `regulatoria`, `frecuencia` y `tipo_medida`.
+- Se incorporó logging en el serializer de `Medida` para registrar advertencias y errores durante la validación.
+
+
+
 ## [Segunda Entrega] - 2025-04-09
 ### Agregado
 - Se agregan instrucciones de instalación en  `README.md` .
 - Se agregan decoradores Swagger para la documentación de la API en `views.py`.
 - Se añade CORS para permitir el acceso a la API desde otros dominios.
-- Se añade autentificacion tipo Basic Auth para la API.
+- Se añade autentificación tipo Basic Auth para la API.
   - Se agrega en `admin.py` clases para manipular los permisos de los usuarios en el admin de Django, vinculando los permisos de los usuarios a los grupos de Django.
 
 ### Cambiado
 - Se actualizan descripciones de los modelos en `models.py`.
-- Se modifica el usario, se utiliza el usuario de Django en vez de un campo `usuario` en los modelos.
+- Se modifica el usuario, se utiliza el usuario de Django en vez de un campo `usuario` en los modelos.
 - Se genera modelo `UsuarioPerfil` para gestionar los perfiles de usuario, ligado a `User` de Django.
 
 
@@ -24,7 +44,7 @@ Todas las modificaciones importantes a este proyecto serán documentadas en este
 - `id_organismo` en `Medida` ahora es una clave foránea a `Organismo`.
   - organismo = models.ForeignKey(Organismo, on_delete=models.CASCADE)
 - Se normalizó la relación entre `Medida` e `Indicador`: ahora `Medida` tiene una relación `ForeignKey` con `Indicador`.
-- Eliminados campos redundantes en `Medida`: `formula`, `verificacion`, y `indicador`.
+- Eliminados campos redundantes en `Medida`: `formula`, `verificación`, y `indicador`.
 - Se normalizaron los campos `frecuencia`, `estado` y `rol` utilizando `choices`, evitando valores inconsistentes y facilitando su gestión en formularios y admin.
 - Se agregó una nueva entidad `PPDA` (Plan de Descontaminación) para representar el plan general de descontaminación de Concón-Quintero-Puchuncaví.
 - Se añadió la entidad `PeriodoPPDA` para definir los distintos periodos (años, trimestres, etc.) dentro de un PPDA.
