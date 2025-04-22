@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 import os
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,15 +24,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-j-*gxkbpq8+$jnvsz-n9v^w+dkofd@3fm+7erjk&oh2yiikxkr'
-
+SECRET_KEY = os.environ.get(
+    "SECRET_KEY", 'django-insecure-j-*gxkbpq8+$jnvsz-n9v^w+dkofd@3fm+7erjk&oh2yiikxkr'
+)
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = []
 
 CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOWED_ORIGINS = [
+    os.environ.get("PRODUCTION_HOST"),
     "http://localhost:8000",
     "http://127.0.0.1:8000",
 ]
@@ -86,19 +92,20 @@ WSGI_APPLICATION = 'dj_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'curso',
-        'USER': 'ingadm',
-        'PASSWORD': '@Ifsnok10in23668l',
-        'HOST': 'cl01sv36a',
-        'PORT': '3306',
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-        },
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'curso',
+#         'USER': 'ingadm',
+#         'PASSWORD': '@Ifsnok10in23668l',
+#         'HOST': 'cl01sv36a',
+#         'PORT': '3306',
+#         'OPTIONS': {
+#             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+#         },
+#     }
+# }
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
@@ -113,6 +120,20 @@ DATABASES = {
 #     }
 # }
 
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.environ.get("PGDATABASE"),
+        "USER": os.environ.get("PGUSER"),
+        "PASSWORD": os.environ.get("PGPASSWORD"),
+        "HOST": os.environ.get("PGHOST"),
+        "PORT": os.environ.get("PGPORT", 5432),
+        "OPTIONS": {
+            "sslmode": "require",
+        },
+        "DISABLE_SERVER_SIDE_CURSORS": True,
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

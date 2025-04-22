@@ -10,6 +10,7 @@ Todas las modificaciones importantes a este proyecto serán documentadas en este
 - Se crea template HTML (`bienvenida.html`) para vista de `BienvenidaRootView`.
 - Se crea registro de logs, para guardar información de las peticiones realizadas a la API.
 - Se crea un endpoint para la visualización de logs en la API.
+- Se crean variables de entorno para la configuración de la API.
 
 ### Cambiado
 - Se modifica la vista `Bienvenida` para que devuelva un mensaje de bienvenida con los participantes del proyecto.
