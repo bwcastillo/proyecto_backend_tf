@@ -25,6 +25,7 @@ urlpatterns = [
     # Bienvenida
     path('', BienvenidaRootView.as_view(), name='bienvenida-root'),
 
+    # Otros Paths
     path('admin/', admin.site.urls),
     path('api/', include(conexiones_urls)),
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
