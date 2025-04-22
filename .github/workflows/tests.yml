@@ -2,9 +2,9 @@ name: Run Django Tests
 
 on:
   push:
-    branches: [ tercera-entrega ]
+    branches: [ "*" ]
   pull_request:
-    branches: [ tercera-entrega ]
+    branches: [ "*" ]
 
 jobs:
   test:
