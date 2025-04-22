@@ -38,6 +38,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirement.txt
 
+      - name: Crear carpeta de logs
+        run: mkdir -p proyecto_django/logs
+
       - name: Run tests
         run: |
           cd proyecto_django
