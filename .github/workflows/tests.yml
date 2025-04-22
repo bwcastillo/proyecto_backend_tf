@@ -44,5 +44,5 @@ jobs:
       - name: Run tests
         run: |
           cd proyecto_django
-          python manage.py migrate
-          python manage.py test
+          python manage.py migrate --settings=dj_project.settings_ci
+          python manage.py test --settings=dj_project.settings_ci
