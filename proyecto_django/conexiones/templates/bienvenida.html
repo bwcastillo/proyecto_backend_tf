@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Bienvenido a la API PPDA</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f8f9fa;
+            color: #333;
+            text-align: center;
+            padding: 4rem;
+        }
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        h2 {
+            font-size: 1.5rem;
+            margin-top: 0.2rem;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+        table {
+            margin: 2rem auto;
+            border-collapse: collapse;
+            width: 60%;
+            max-width: 600px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 0.8rem;
+            text-align: center;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        a {
+            display: inline-block;
+            margin: 0.5rem;
+            padding: 0.7rem 1.5rem;
+            text-decoration: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎉 Bienvenido a la API del sistema gestor PPDA</h1>
+    <h2>GRUPO 1</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>👩‍🎓 Integrantes 👨‍🎓</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for nombre in integrantes %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ nombre }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div>
+        <a href="/api/docs/" target="_blank" title="Se abrirá en una nueva pestaña">📘 Documentación Swagger</a>
+        <a href="/api/docs/readme-html/" target="_blank" title="Se abrirá en una nueva pestaña">📄 Ver README</a>
+        <a href="/api/docs/changelog-html/" target="_blank" title="Se abrirá en una nueva pestaña">📝 Ver CHANGELOG</a>
+        <a href="/api/logs/texto" target="_blank" title="Se abrirá en una nueva pestaña">💭 Ver Logs</a>
+    </div>
+</body>
+</html>
