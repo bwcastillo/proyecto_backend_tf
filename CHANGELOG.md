@@ -17,7 +17,7 @@ Todas las modificaciones importantes a este proyecto serán documentadas en este
 - Se cambia `serializers.py` para los nuevos modelos y se eliminan los campos innecesarios.
 
 ### Corregido
-- Se añaden excepcionees para manejar errores en la API.
+- Se añaden excepciones para manejar errores en la API.
   - Errores son guardados en el log de la API.
 - Se agregaron validaciones de lógica de negocio al `MedidaSerializer` para asegurar coherencia entre los campos `regulatoria`, `frecuencia` y `tipo_medida`.
 - Se incorporó logging en el serializer de `Medida` para registrar advertencias y errores durante la validación.
