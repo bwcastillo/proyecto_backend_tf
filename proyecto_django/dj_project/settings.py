@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-CORS_ALLOW_ALL_ORIGINS = False 
+CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8000",
     "http://127.0.0.1:8000",
@@ -74,6 +74,9 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
             ],
         },
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],
+        'APP_DIRS': True,
     },
 ]
 
@@ -83,19 +86,32 @@ WSGI_APPLICATION = 'dj_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
- DATABASES = {
-     'default': {
-         'ENGINE': 'django.db.backends.postgresql',
-         'NAME': 'proyecto',
-         'USER': 'postgres',   ## Cambia esto por tu usuario de PostgreSQL
-         'PASSWORD': 'admin123', ## Cambia esto por tu contraseña de PostgreSQL
-         'HOST': 'localhost',
-         'PORT': '5432',
-         'OPTIONS': {
-             'options': '-c search_path=public',
-         },
-     }
- }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'curso',
+        'USER': 'ingadm',
+        'PASSWORD': '@Ifsnok10in23668l',
+        'HOST': 'cl01sv36a',
+        'PORT': '3306',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
+    }
+}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'proyecto',
+#         'USER': 'postgres',  # Cambia esto por tu usuario de PostgreSQL
+#         'PASSWORD': 'admin123',  # Cambia esto por tu contraseña de PostgreSQL
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#         'OPTIONS': {
+#             'options': '-c search_path=public',
+#         },
+#     }
+# }
 
 
 # Password validation
@@ -152,9 +168,44 @@ REST_FRAMEWORK = {
 
 # Configuración del esquema de la API
 SPECTACULAR_SETTINGS = {
-'TITLE': 'API del sistema gestor PPDA',
-'DESCRIPTION': 'Una API para gestionar los PPDA - V.1.0.0 Puchquinco.',
-'VERSION': '1.0.0',
-# 'SERVE_INCLUDE_SCHEMA': False,
-# 'COMPONENT_SPLIT_REQUEST': True,
+    'TITLE': 'API del sistema gestor PPDA',
+    'DESCRIPTION': 'Una API para gestionar los PPDA - V.1.0.0 Puchquinco.',
+    'VERSION': '1.0.0',
+    # 'SERVE_INCLUDE_SCHEMA': False,
+    # 'COMPONENT_SPLIT_REQUEST': True,
+}
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'logs', 'proyecto.log'),
+            'formatter': 'verbose',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        '__main__': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+    },
 }

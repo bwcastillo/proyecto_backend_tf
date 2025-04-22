@@ -1,0 +1,48 @@
+name: Run Django Tests
+
+on:
+  push:
+    branches: [ tercera-entrega ]
+  pull_request:
+    branches: [ tercera-entrega ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: curso
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirement.txt
+
+      - name: Crear carpeta de logs
+        run: mkdir -p proyecto_django/logs
+
+      - name: Run tests
+        run: |
+          cd proyecto_django
+          python manage.py migrate --settings=dj_project.settings_ci
+          python manage.py test --settings=dj_project.settings_ci

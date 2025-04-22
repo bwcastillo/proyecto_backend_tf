@@ -18,11 +18,16 @@ from django.contrib import admin
 from django.urls import path, include
 from conexiones import urls as conexiones_urls
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
+from conexiones.views import BienvenidaRootView
 
 
 urlpatterns = [
+    # Bienvenida
+    path('', BienvenidaRootView.as_view(), name='bienvenida-root'),
+
     path('admin/', admin.site.urls),
     path('api/', include(conexiones_urls)),
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
-    path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'),
+         name='swagger-ui'),
 ]
