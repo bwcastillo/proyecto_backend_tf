@@ -83,14 +83,7 @@ class MarkdownHtmlView(APIView):
 
 
 # Bienvenida
-@extend_schema_view(
-    get=extend_schema(
-        summary="Bienvenida",
-        description="Endpoint de bienvenida en la raíz del sistema.",
-        tags=["Inicio"],
-    ),
-    exclude=True
-)
+@extend_schema(exclude=True)
 class BienvenidaRootView(APIView):
     """
     Muestra una página HTML de bienvenida usando plantilla.
@@ -217,6 +210,7 @@ class ChangelogHTMLView(MarkdownHtmlView):
 @extend_schema(
     summary="Ver logs del sistema",
     description="Retorna el contenido del archivo de logs como texto plano.",
+    responses={200: {'content': {'text/plain': {'schema': {'type': 'string'}}}}},
     tags=["Logs"]
 )
 class LogPlainTextView(APIView):
