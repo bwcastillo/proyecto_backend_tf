@@ -10,6 +10,11 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    env:
+      PRODUCTION_HOST: localhost
+      DEBUG: "True"
+      SECRET_KEY: testing-secret-key
+
     services:
       mysql:
         image: mysql:5.7
