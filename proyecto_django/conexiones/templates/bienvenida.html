@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -5,8 +7,9 @@
     <title>Bienvenido a la API PPDA</title>
     <style>
         body {
+            background: url("{% static 'conexiones/fondo.jpg' %}") no-repeat center center fixed;
+            background-size: cover;
             font-family: 'Segoe UI', sans-serif;
-            background: #f8f9fa;
             color: #333;
             text-align: center;
             padding: 4rem;
@@ -27,6 +30,7 @@
             border-collapse: collapse;
             width: 60%;
             max-width: 600px;
+            color: white;
         }
         th, td {
             border: 1px solid #ccc;
