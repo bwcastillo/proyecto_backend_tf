@@ -40,7 +40,7 @@ ALLOWED_HOSTS = [
 
 CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOWED_ORIGINS = list(filter(None, [
-    os.environ.get("PRODUCTION_HOST"),
+    'https://' + os.environ.get("PRODUCTION_HOST"),
     "http://localhost:8000",
     "http://127.0.0.1:8000",
 ]))
