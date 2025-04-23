@@ -208,15 +208,15 @@ LOGGING = {
 }
 
 # Crea user superadmin si no existe
-if os.environ.get("DJANGO_SUPERUSER_USERNAME") and os.environ.get("DJANGO_SUPERUSER_PASSWORD"):
-    try:
-        django.setup()
-        User = get_user_model()
-        if not User.objects.filter(username=os.environ["DJANGO_SUPERUSER_USERNAME"]).exists():
-            User.objects.create_superuser(
-                username=os.environ["DJANGO_SUPERUSER_USERNAME"],
-                email=os.environ.get("DJANGO_SUPERUSER_EMAIL", ""),
-                password=os.environ["DJANGO_SUPERUSER_PASSWORD"]
-            )
-    except Exception as e:
-        print("Error al crear el superusuario:", e)
+# if os.environ.get("DJANGO_SUPERUSER_USERNAME") and os.environ.get("DJANGO_SUPERUSER_PASSWORD"):
+#     try:
+#         django.setup()
+#         User = get_user_model()
+#         if not User.objects.filter(username=os.environ["DJANGO_SUPERUSER_USERNAME"]).exists():
+#             User.objects.create_superuser(
+#                 username=os.environ["DJANGO_SUPERUSER_USERNAME"],
+#                 email=os.environ.get("DJANGO_SUPERUSER_EMAIL", ""),
+#                 password=os.environ["DJANGO_SUPERUSER_PASSWORD"]
+#             )
+#     except Exception as e:
+#         print("Error al crear el superusuario:", e)
